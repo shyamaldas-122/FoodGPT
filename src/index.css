@@ -1,0 +1,194 @@
+body{
+  font-family: 'Poppins', sans-serif;
+}
+#result{
+  display: flex;
+  justify-content:center;
+}
+.details{
+  display: flex;
+  flex: 3;
+  margin-right: 60px;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 5%;
+  /* -webkit-box-shadow: 0px 4px 13px 12px rgba(111, 122, 216, 0.53);
+-moz-box-shadow: 0px 4px 13px 12px rgba(107, 134, 239, 0.53);
+box-shadow: 0px 4px 31px 12px rgba(115, 130, 228, 0.53); */
+-webkit-box-shadow: 0px 1px 30px 0px rgba(95,95,230,1);
+-moz-box-shadow: 0px 1px 30px 0px rgba(95,95,230,1);
+box-shadow: 0px 1px 30px 0px rgba(95,95,230,1);
+}
+.details img{
+  margin-bottom: 6px;
+  transition: transform .2s;
+}
+.details img:hover{
+  cursor:pointer;
+  transform: scale(1.15);
+  /* transition: transform 0.7s; */
+}
+.details h1, h4{
+  text-align: center;
+  padding: 3px;
+
+}
+.instructions{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  flex: 9;
+  padding: 10px;
+}
+ul{
+    font-size: 1em;
+    position: relative;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 0.8em 3em;
+    padding: 1.2em 0 0 1.2em;
+        
+}
+.img{
+  width: 25rem;
+  margin: 1.8em auto 0 auto;
+  text-align: center;
+}
+#show-recipe{
+  text-align: center;
+  margin-top: 20px;
+  /* margin-top: 50%; */
+  margin-left:5%;
+  float: left;
+  /* transform: translateX(-50%); */
+
+}
+h2{
+  text-align: center;
+}
+
+#ingredient-con{
+  display: grid;
+}
+#ingredient-con h2{
+  margin-bottom: -30px;
+}
+#watch{
+  position: relative;
+  margin-top: 20px;
+  margin-left: 0px;
+  float: right;
+  margin-right: 5%;
+}
+#hide-recipe{
+  font-size: 1em;
+    position: relative;
+    width: 1.8em;
+    height: 1.8em;
+    /* background-color: yellow; */
+    border: none;
+    /* top: 1.2em; */
+    left:100%;
+    border-radius: 0.3em;
+}
+#hide-recipe img{
+  position: relative;
+  width: 2.2em;
+  cursor: pointer;
+}
+
+
+.bn5 {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+}
+
+.bn5:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowingbn5 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowingbn5 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.bn5:active {
+  color: #000;
+}
+
+.bn5:active:after {
+  background: transparent;
+}
+
+.bn5:hover:before {
+  opacity: 1;
+}
+
+.bn5:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #191919;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+/* foodgpt image design  */
+.uppperSideTop img:hover {
+  animation-name: rotate; 
+  animation-duration: 2s; 
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes rotate {
+  from {transform: rotate(0deg);}
+  to {transform: rotate(360deg);}
+}
+
+.query img{
+  animation-name: rotate; 
+  animation-duration: 2s; 
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
