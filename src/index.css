@@ -192,3 +192,16 @@ h2{
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
+
+.midbtn:hover{
+  -webkit-box-shadow: 1px 1px 24px -1px rgba(95,95,230,1);
+  -moz-box-shadow: 1px 1px 24px -1px rgba(95,95,230,1);
+  box-shadow: 1px 1px 24px -1px rgba(95,95,230,1);
+  transition: opacity 0.3s ease-in;
+}
+.listItems:hover{
+  border: 1px solid rgba(95,95,230);
+  -webkit-box-shadow: 1px 1px 24px -1px rgba(95,95,230,1);
+  -moz-box-shadow: 1px 1px 24px -1px rgba(95,95,230,1);
+  box-shadow: 1px 1px 24px -1px rgba(95,95,230,1);
+}

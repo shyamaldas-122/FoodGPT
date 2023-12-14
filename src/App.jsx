@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import home from './assets/home.svg'
-import save from './assets/bookmark.svg'
 import sendBtn from './assets/send.svg'
 import useIcon from './assets/user-icon.png'
 import gptImgLogo from './assets/chatgptLogo.svg'
@@ -8,9 +6,11 @@ import food1 from './assets/food1.svg'
 import food2 from './assets/food2.svg'
 import food3 from './assets/food3.svg'
 import spoon from  './assets/spoon.svg'
-import './App.css'
+import linkedin from './assets/linkedin.svg'
+import github from './assets/github.svg'
 import response from './MealAPI.js'
 import Card from './Card'
+import './App.css'
 
 function App() {
   const msgEnd=useRef(null)
@@ -30,6 +30,7 @@ useEffect(()=>{
 },[message])
 
   const handelSend =async ()=>{
+    if (input === '') return; // if user type nothing and press send button.
     const txt=input;
     setInput('')
     const newMessage = {
@@ -39,19 +40,32 @@ useEffect(()=>{
       isBot: false
     };
     setMessage([...message, newMessage]);
-    const res= await response(input)
-    // console.log("Message=",message);
+    const res= await response(txt)
+
     const newMessage2 = {
       text: {
           msg: txt,
       },
       isBot: false
     };
-    const newMessage3 = {
-      text: res,
-      isBot: true
-    };
-    setMessage([...message, newMessage2,newMessage3]);
+    // Checking user input valid or not
+    if (res){
+      const random=Math.floor(Math.random()*res.length)
+      const newMessage3 = {
+        text: res[random],
+        isBot: true
+      };
+      setMessage([...message, newMessage2,newMessage3]);
+    }
+    else{
+      const notFound = {
+        text: {
+            msg: `I'm sorry, I couldn't find information about "${txt}". It might not be in my database. Can I help you with something else?`,
+        },
+        isBot: true
+      };
+      setMessage([...message, newMessage2,notFound]);
+    }
   }
 
   // handel enterkey
@@ -63,7 +77,6 @@ useEffect(()=>{
 
   const handleQuery=async(e)=>{
     const txt=e.target.value;
-    setInput('')
     const newMessage = {
       text: {
           msg: txt,
@@ -72,6 +85,7 @@ useEffect(()=>{
     };
     setMessage([...message, newMessage]);
     const res= await response(txt)
+    const random=Math.floor(Math.random()*res.length)
     const newMessage2 = {
       text: {
           msg: txt,
@@ -79,7 +93,7 @@ useEffect(()=>{
       isBot: false
     };
     const newMessage3 = {
-      text: res,
+      text: res[random],
       isBot: true
     };
     setMessage([...message, newMessage2,newMessage3]);
@@ -93,14 +107,13 @@ useEffect(()=>{
               <button className='midbtn' onClick={()=>{window.location.reload()}}><img src={spoon} alt='' className='addBtn'/>Find Your Food</button>
               <div className='upperSideButtom'>
                 <button className='query' onClick={handleQuery} value={"Matar Paneer"}><img src={food2} alt='Query'/>Matar Paneer</button>
-                <button className='query' onClick={handleQuery} value={"Biryani"}><img src={food3}  alt='Query'/>Biryani</button>
+                <button className='query' onClick={handleQuery} value={"Tandoori chicken"}><img src={food3}  alt='Query'/>Tandoori chicken</button>
               </div>
           </div>
           <div className='lowerSide'>
           <div className='' style={{textAlign:"center",fontSize:"16px"}}>🚀💻Connect With me💻🚀</div>
-            <div className='listItems'><img src={home} alt='' className='listItemsImg'/>Home</div>
-            <div className='listItems'><img src={save} alt='' className='listItemsImg'/>Saved</div>
-            {/* <div className='listItems'><img src={rocket} alt='' className='listItemsImg'/>Upgrade to Pro</div> */}
+          <a href='https://www.linkedin.com/in/shyamal122/' target='_blank' style={{color:"white", textDecoration:"none"}}><div className='listItems'><img src={linkedin} alt='' className='listItemsImg' width="40px"/>LinkedIn</div></a>
+          <a href='https://github.com/shyamaldas-122' target='_blank' style={{color:"white", textDecoration:"none"}}><div className='listItems'><img src={github} alt='' className='listItemsImg'width="40px" />Github</div></a>
           </div>
       </div>
       <div className='main'>
@@ -112,11 +125,6 @@ useEffect(()=>{
               </div>)
             )}
 
-            {/* {message.map((message, index) => (
-              <div key={index} className={"chat bot"}>
-                <img className='chatImg' src={gptImgLogo} alt=''/><p className="text">{message.text.msg}</p>
-              </div>
-            ))} */}
             <div ref={msgEnd}></div>
           </div>
           <div className='chatFooter'>
