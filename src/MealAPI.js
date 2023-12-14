@@ -5,15 +5,15 @@ async function response(message) {
     if(message.length==1){
         const response = await fetch(url2 + message);
         const data = await response.json();
-        console.log("Whole data:",data);
-        console.log("type:",typeof(data.meals));
+        // console.log("Whole data:",data);
+        // console.log("Api call:",data.meals);
         return data.meals;
     }
     else{
         const response = await fetch(url + message);
         const data = await response.json();
-        console.log("Whole data:",data);
-        console.log("Api call:",data.meals);
+        // console.log("Whole data:",data);
+        // console.log("Api call:",data.meals);
         return data.meals;
     }
     
